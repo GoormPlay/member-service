@@ -10,5 +10,5 @@ import java.util.List;
 @FeignClient(name = "ui-service", configuration = FeignHeaderConfig.class)
 public interface UserInteractionClient {
     @GetMapping("/ui/content/{userId}/liked")
-    public List<String>  getLikedContentsId(@PathVariable String userId);
+    List<String>  getLikedContentsId(@PathVariable String userId);
 }
