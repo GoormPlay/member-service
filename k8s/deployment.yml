@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: member-service
+  namespace: member
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: member-service
+  template:
+    metadata:
+      labels:
+        app: member-service
+    spec:
+      containers:
+        - name: member-service
+          image: roin09/member-service:latest
+          ports:
+            - containerPort: 8082
+          envFrom:
+            - configMapRef:
+                name: member-service-config
+            - secretRef:
+                name: member-service-secret
