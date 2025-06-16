@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-@FeignClient(name = "subscribe-service" , configuration = FeignHeaderConfig.class)
+@FeignClient(name = "subscribe-service",
+        url = "http://subscribe-service.default.svc.cluster.local:8085",
+        configuration = FeignHeaderConfig.class)
 public interface SubscribeClient {
 
 

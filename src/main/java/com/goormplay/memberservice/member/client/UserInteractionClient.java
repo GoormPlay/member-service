@@ -7,7 +7,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
-@FeignClient(name = "ui-service", configuration = FeignHeaderConfig.class)
+@FeignClient(name = "ui-service",
+        url = "http://ui-service.default.svc.cluster.local:8086",
+        configuration = FeignHeaderConfig.class)
 public interface UserInteractionClient {
     @GetMapping("/ui/content/{userId}/liked")
     List<String>  getLikedContentsId(@PathVariable String userId);
