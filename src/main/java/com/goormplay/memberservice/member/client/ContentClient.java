@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 @FeignClient(name = "content-service",
-        url = "http://content-service.default.svc.cluster.local:8083",
+        url = "http://content-service.content.svc.cluster.local:8083",
         configuration = FeignHeaderConfig.class)
 public interface ContentClient {
     @PostMapping("/contents/bulk-ids")
