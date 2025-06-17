@@ -1,0 +1,11 @@
+image:
+  repository: roin09/member-service
+  tag: latest
+
+service:
+  port: 80
+  targetPort: 8082
+
+env:
+  useConfigMap: true
+  useSecret: true
