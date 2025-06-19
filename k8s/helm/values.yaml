@@ -5,8 +5,10 @@ base-template:
   image:
     repository: roin09/member-service
     tag: latest
+    pullPolicy: IfNotPresent    # 기본값 추가
 
   service:
+    type: ClusterIP
     port: 80
     targetPort: 8082
 
