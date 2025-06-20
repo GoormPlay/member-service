@@ -1,7 +1,6 @@
 base-template:
-  nameOverride: member-service
+  nameOverride: member
   fullnameOverride: member-service
-
   image:
     repository: roin09/member-service
     tag: latest
@@ -19,7 +18,7 @@ base-template:
   replicaCount: 1
 
   ingress:
-    enabled: 
+    enabled: false
     host: ""
 
   externalSecret:
