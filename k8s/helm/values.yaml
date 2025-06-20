@@ -41,7 +41,7 @@ affinity:
             - key: node-type
               operator: In
               values:
-                - medium
+                - standard
 
 resources:
   requests:
