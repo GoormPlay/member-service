@@ -29,7 +29,7 @@ externalSecret:
   enabled: true
   refreshInterval: 1h
   secretStore:
-    name: aws-secrets
+    name: aws-secrets-manager
     kind: ClusterSecretStore
   dataFromKey: member-service-secret
 
