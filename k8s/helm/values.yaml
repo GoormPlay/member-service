@@ -1,48 +1,52 @@
-base-template:
-  nameOverride: member
-  fullnameOverride: member-service
-  image:
-    repository: roin09/member-service
-    tag: latest
-    pullPolicy: IfNotPresent    # 기본값 추가
+nameOverride: member
+fullnameOverride: member-service
+image:
+  repository: roin09/member-service
+  tag: latest
+  pullPolicy: IfNotPresent    # 기본값 추가
 
-  service:
-    type: ClusterIP
-    port: 80
-    targetPort: 8082
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8082
 
-  env:
-    useConfigMap: true
-    useSecret: true
+env:
+  useConfigMap: true
+  useSecret: true
 
-  replicaCount: 1
+replicaCount: 1
 
-  ingress:
-    enabled: false
-    host: ""
+hpa:
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 70
+ingress:
+  enabled: false
+  host: ""
 
-  externalSecret:
-    enabled: true
-    refreshInterval: 1h
-    secretStore:
-      name: aws-secrets
-      kind: ClusterSecretStore
-    dataFromKey: member-service-secret
+externalSecret:
+  enabled: true
+  refreshInterval: 1h
+  secretStore:
+    name: aws-secrets
+    kind: ClusterSecretStore
+  dataFromKey: member-service-secret
 
-  affinity:
-    nodeAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        nodeSelectorTerms:
-          - matchExpressions:
-              - key: node-type
-                operator: In
-                values:
-                  - medium
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: node-type
+              operator: In
+              values:
+                - medium
 
-  resources:
-    requests:
-      cpu: 300m
-      memory: 384Mi
-    limits:
-      cpu: 500m
-      memory: 512Mi
+resources:
+  requests:
+    cpu: 300m
+    memory: 384Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
